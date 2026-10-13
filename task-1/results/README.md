@@ -9,9 +9,7 @@
 | `airflow-scheduler`  | Планировщик Airflow                                 | —                         |
 
 
-DAG: `dags/marketing_batch_pipeline.py` — читает CSV и таблицу в PostgreSQL,
-выполняет ветвление по объёму данных, отправляет email при успехе/неуспехе,
-использует retry с экспоненциальным backoff.
+DAG: `dags/marketing_batch_pipeline.py` — читает CSV и таблицу в PostgreSQL, выполняет ветвление по объёму данных, отправляет email при успехе (неуспехе).
 
 ## Запуск
 

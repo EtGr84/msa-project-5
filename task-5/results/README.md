@@ -1,12 +1,10 @@
-# TradeWare Stock ETL — Monitoring, Logging & Alerting
+# Используемый стек
 
-## Используемый стек
-
-- **Spring Batch + Micrometer** — генерация метрик
-- **Prometheus** — сбор метрик
-- **Grafana** — дашборды и алерты
-- **Filebeat → Logstash → Elasticsearch → Kibana (ELK)** — централизованное логирование
-- **Docker Compose** — локальное развёртывание
+- Spring Batch + Micrometer — генерация метрик
+- Prometheus*— сбор метрик
+- Grafana — дашборды и алерты
+- Filebeat → Logstash → Elasticsearch → Kibana (ELK)** — централизованное логирование
+- Docker Compose — локальное развёртывание
 
 ---
 

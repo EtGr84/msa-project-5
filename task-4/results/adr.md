@@ -31,8 +31,9 @@
 - запуск как Spring Boot контейнер в Kubernetes (CronJob / Job);
 - метрики через Micrometer → Prometheus, логи → ELK.
 
+---
 
-### План имплементации (high-level)
+### План имплементации 
 
 1. POC-приложение (настоящее задание): CSV → enrich → Postgres.
 2. Вынесение Job в отдельный Spring Boot сервис.

@@ -1,5 +1,7 @@
 # Внедрение Spring Batch для обработки отчётов по остаткам
 
+---
+
 ## Выбор решения ([оценка] - от 5 до 1, где 5 максимальная)
 
 | Критерий / Решение | **Spring Batch** | Apache Airflow | K8s Job + plain Java | Apache Spark | Apache NiFi |
@@ -15,9 +17,11 @@
 | Готовность к облаку (GKE) | [5] (Spring Boot image) | [5] | [5] | [5] | [3] |
 | ИТОГО | 45 | 27 | 37 | 30 | 33 |
 
-## Р
+## Предлагаемое решение
 
-Использовать **Spring Batch 5 (Spring Boot 3)** как ETL-движок:
+---
+
+### Использовать **Spring Batch 5 (Spring Boot 3)** как ETL-движок:
 
 - `FlatFileItemReader` — чтение CSV из GCS (локально — classpath);
 - `ItemProcessor` — обогащение данными `loyality_data` из PostgreSQL;
@@ -27,21 +31,8 @@
 - запуск как Spring Boot контейнер в Kubernetes (CronJob / Job);
 - метрики через Micrometer → Prometheus, логи → ELK.
 
-## Последствия
 
-**Плюсы:**
-- Команда Java умеет поддерживать Spring-стек — минимум onboarding.
-- Chunk + transaction boundary решают проблему построчных UPDATE.
-- Restart «с места падения» — за счёт JobRepository.
-- Легко перенести в GKE: Spring Boot uber-jar + Dockerfile уже есть.
-- Готов к расширению: partitioned step для x2–x3 пика.
-
-**Минусы / риски:**
-- Для действительно «больших» данных (десятки млн) потребуется remote partitioning.
-- Spring Batch не является оркестратором — расписание остаётся за k8s CronJob / Spring Cloud Data Flow.
-- Мониторинг нужно настраивать отдельно (Micrometer + Prometheus).
-
-## План имплементации (high-level)
+### План имплементации (high-level)
 
 1. POC-приложение (настоящее задание): CSV → enrich → Postgres.
 2. Вынесение Job в отдельный Spring Boot сервис.

@@ -2,19 +2,19 @@
 
 ## Рассмотренные варианты
 
-### Вариант №1 «Spring Batch»
+### «Spring Batch»
 
 Java/Spring-фреймворк для пакетной обработки. Модель `Job → Step → Reader/Processor/Writer`, рестартуемость шагов, chunk-oriented processing, встроенный `JobRepository` в БД. CRON — через Spring `@Scheduled` или внешний шедулер. Нативен для команд со Spring-стеком.
 
-### Вариант №2 «Apache Airflow»
+### «Apache Airflow»
 
 Оркестратор DAG-пайплайнов на Python. Богатый функционал: retry, ветвления, sensors, email-уведомления, Web UI, провайдеры для Postgres/S3. Разворачивается как managed-сервис (Composer/MWAA) или через Helm-chart (Scheduler + Webserver + Workers + metadata DB).
 
-### Вариант №3 «Kubernetes CronJob»
+###«Kubernetes CronJob»
 
 Нативный примитив Kubernetes: CRON-расписание запускает `Job`, который создаёт `Pod` с контейнером приложения. Приложение — обычный контейнер (Python/Go/Java) с одной-двумя командами: прочитать из Postgres, записать CSV в S3/GCS. Retry через `backoffLimit`, логи — в stdout (ELK), метрики — через Pushgateway или sidecar.
 
-### Вариант №4 «Apache Spark»
+### «Apache Spark»
 
 Распределённый движок обработки данных. Поддерживает JDBC-источники, запись CSV/Parquet, масштабирование по кластеру. Запускается через Spark-on-K8s или managed-сервисы (Dataproc/EMR). Расписание — через внешний шедулер (Airflow, K8s CronJob).
 

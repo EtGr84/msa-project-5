@@ -1,4 +1,4 @@
-# Изменения относительно Task5
+# Изменения относительно task-5
 
 - `spring.batch.job.enabled=false` — Job больше не запускается при старте.
 - REST endpoint `POST /api/jobs/import-products?fileName=...` для запуска Job.
